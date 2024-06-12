@@ -11,20 +11,16 @@ load_dotenv()
 app = Flask(__name__)
 
 url = os.getenv("DATABASE_URL")
+
 connection = psycopg2.connect(url)
 
 cur = connection.cursor()
 
-#
-# query_insert = '''INSERT INTO contact (name,email,phone_number) VALUES  ('Parth', 'Parth@gmail.com','1234567890')'''
-#
+
+query_insert = '''INSERT INTO contact (name,email,phone_number) VALUES  ('Parth', 'Parth@gmail.com','1234567890')'''
+
 cur.execute(contact)
 connection.commit()
-#
-#
-#
-
-
 
 
 @app.route("/post")
@@ -57,5 +53,5 @@ def contact():
         return render_template("contact.html")
 
 
-
-app.run(port = 3000, debug=True)
+if  __name__ == '__main__':
+    app.run(port = 3000, debug=True)
